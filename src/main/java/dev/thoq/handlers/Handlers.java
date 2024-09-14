@@ -6,9 +6,11 @@ import dev.thoq.functions.EvalEx;
 import dev.thoq.functions.Help;
 import dev.thoq.lib.Lib;
 import dev.thoq.lib.Screen;
+import com.google.common.collect.ImmutableMap;
 
 import java.text.DecimalFormat;
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.lang.System.exit;
 
@@ -29,24 +31,26 @@ public class Handlers {
 
   public static void clearHandler(String input) {
     Screen.clear();
-    if (!Objects.equals(input, "")) Screen.println("Command 'clear' doesnt take any arguments.");
+    if (!input.isEmpty()) Screen.println("Command 'clear' doesn't take any arguments.");
   }
 
   public static void algExHandler(String inputEx) {
     try {
       String[] parts = inputEx.split(",");
       StringBuilder expression = new StringBuilder();
+      Map<String, Double> newAssignments = new HashMap<>(Main.assignments);
 
       for (String part : parts) {
         part = part.trim();
         if (part.contains("=")) {
           String[] assignment = part.split("=");
-          Main.assignments.put(assignment[0].trim(), Double.parseDouble(assignment[1].trim()));
+          newAssignments.put(assignment[0].trim(), Double.parseDouble(assignment[1].trim()));
         } else {
           expression.append(part).append(" ");
         }
       }
 
+      Main.assignments = ImmutableMap.copyOf(newAssignments);
       String expr = expression.toString().trim();
       double result = Lib.eval(expr);
       Screen.println(" " + result);
@@ -68,10 +72,8 @@ public class Handlers {
   public static void sciNotHandler(String inputEx) {
     try {
       double number = Double.parseDouble(inputEx);
-
       DecimalFormat df = new DecimalFormat("#.##");
       String formattedResult = df.format(number);
-
       Screen.println(" " + formattedResult);
     } catch (NumberFormatException e) {
       Screen.println(" Error parsing number: " + e.getMessage());
@@ -84,5 +86,7 @@ public class Handlers {
     Help.helpMenu(input);
   }
 
-  public static void exitHandler() { exit(0); }
+  public static void exitHandler() {
+    exit(0);
+  }
 }

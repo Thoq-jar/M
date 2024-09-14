@@ -1,6 +1,10 @@
 java_import(
-    name = "math",
-    jars = ["lib/exp4j.jar"],
+    name = "external",
+    jars = [
+        "lib/exp4j.jar",
+        "lib/guava-jre.jar",
+        "lib/guava.jar",
+    ],
 )
 
 java_library(
@@ -12,7 +16,7 @@ java_library(
         "-target",
         "21",
     ],
-    deps = [":math"],
+    deps = [":external"],
 )
 
 java_binary(
@@ -26,7 +30,7 @@ java_binary(
     ],
     main_class = "dev.thoq.Main",
     deps = [
+        ":external",
         ":lib",
-        ":math",
     ],
 )
