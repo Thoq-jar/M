@@ -14,6 +14,9 @@ public class Help {
     Screen.println(" -To calculate the square root, use sqrt [number or expression here]");
     Screen.println(" -To assign values to variables, use x = value y = value");
     Screen.println(" -To view the help menu (this screen), enter: `help []`");
+    Screen.println(" -To calculate pi, enter: `pi->gen []`");
+    Screen.println(" -To pi a number, enter: `pi [number here]`");
+    Screen.println(" -To override any restriction given (eg. Please enter a value below 1000!), enter: `command! [args] (eg. pi! [3000]`");
     Screen.println(" -To clear the screen, enter: `clear []`");
     Screen.println(" -To exit, enter: `exit []` or `quit []`");
   }

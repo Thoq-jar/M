@@ -24,6 +24,14 @@ public class CmdProcessor {
       case "sci->not":
         Handlers.sciNotHandler(inputEx);
         break;
+      case "pi->gen":
+        Handlers.piGenHandler(inputEx);
+        break;
+      case "pi":
+        Handlers.piHandler(inputEx);
+      case "pi!":
+        Handlers.piOverrideHandler(inputEx);
+        break;
       case "exit":
       case "quit":
         Handlers.exitHandler();

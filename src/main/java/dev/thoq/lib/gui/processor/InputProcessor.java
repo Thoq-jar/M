@@ -18,7 +18,7 @@ public class InputProcessor {
     if (parts.length > 1 && parts[1].startsWith("[") && parts[1].endsWith("]")) {
       String expression = parts[1].substring(1, parts[1].length() - 1).trim();
       CmdProcessor.evl(command, expression);
-    } else if (command.equals("exit") || command.equals("quit") || command.equals("clear") || command.equals("help") ) {
+    } else if (command.equals("exit") || command.equals("quit") || command.equals("clear") || command.equals("help") || command.equals("pi->gen")) {
       CmdProcessor.evl(command, "");
     } else {
       Screen.println(" Invalid input format. Please use: command [args]");
