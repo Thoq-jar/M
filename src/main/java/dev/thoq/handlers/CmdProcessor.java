@@ -4,7 +4,7 @@ import dev.thoq.lib.Screen;
 
 public class CmdProcessor {
   public static void evl(String command, String inputEx) {
-    Screen.println(" " + command + " " + inputEx);
+    Screen.println(" " + command + " [" + inputEx + "]");
     switch (command) {
       case "eval":
         Handlers.evalExHandler(inputEx);
@@ -27,6 +27,9 @@ public class CmdProcessor {
       case "exit":
       case "quit":
         Handlers.exitHandler();
+        break;
+      case "clear":
+        Handlers.clearHandler(inputEx);
         break;
       default:
         Screen.println(" Command not supported!");

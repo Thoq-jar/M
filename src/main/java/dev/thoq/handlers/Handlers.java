@@ -8,6 +8,7 @@ import dev.thoq.lib.Lib;
 import dev.thoq.lib.Screen;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 import static java.lang.System.exit;
 
@@ -24,6 +25,11 @@ public class Handlers {
 
   public static void evalExHandler(String expression) {
     EvalEx.evalEx(expression);
+  }
+
+  public static void clearHandler(String input) {
+    Screen.clear();
+    if (!Objects.equals(input, "")) Screen.println("Command 'clear' doesnt take any arguments.");
   }
 
   public static void algExHandler(String inputEx) {
