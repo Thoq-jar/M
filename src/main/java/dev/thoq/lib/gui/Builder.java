@@ -1,18 +1,17 @@
 package dev.thoq.lib.gui;
 
-import dev.thoq.Main;
 import dev.thoq.lib.Colors;
 import dev.thoq.lib.Screen;
 import dev.thoq.lib.gui.processor.InputProcessor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import static java.lang.System.err;
-import static java.lang.System.out;
 
 public class Builder {
     public static JTextArea outputArea;
@@ -25,41 +24,22 @@ public class Builder {
         window.setLayout(new BorderLayout());
         window.getContentPane().setBackground(Colors.getBackgroundColor());
 
-        URL resource = Main.class.getResource("/icon.png");
-        if (resource == null) {
-            err.println("Resource not found: icon.png");
-
-            String relativePath = "icon.png";
-            URL relativeResource = Main.class.getResource(relativePath);
-            if (relativeResource == null) {
-                err.println("Relative resource not found: " + relativePath);
-
-                String absolutePath = "icon.png";
-                File file = new File(absolutePath);
-                out.println("Falling back to local icon...");
-                if (!file.exists()) {
-                    err.println("File does not exist at: " + absolutePath);
-                } else {
-                    try {
-                        out.println("Fell back successfully!");
-                        ImageIcon icon = new ImageIcon(file.toURI().toURL());
-                        window.setIconImage(icon.getImage());
-                    } catch (IOException e) {
-                        err.println("Error loading icon: " + e.getMessage());
-                    }
-                }
-            } else {
-                ImageIcon icon = new ImageIcon(relativeResource);
-                window.setIconImage(icon.getImage());
-            }
-        } else {
-            ImageIcon icon = new ImageIcon(resource);
+        try {
+            URI iconUri = new URI("https://i.imgur.com/2RAnqlV.png");
+            URL iconUrl = iconUri.toURL();
+            ImageIcon icon = new ImageIcon(iconUrl);
             window.setIconImage(icon.getImage());
+        } catch (URISyntaxException e) {
+            err.println("Invalid URI: " + e.getMessage());
+            Screen.println("Invalid URI: " + e.getMessage());
+        } catch (IOException e) {
+            err.println("Error loading icon: " + e.getMessage());
+            Screen.println("Error loading icon: " + e.getMessage());
         }
 
         outputArea = new JTextArea();
         outputArea.setEditable(false);
-        outputArea.setFont(new Font("Monospaced", Font.PLAIN, 24));
+        outputArea.setFont(new Font("Monospaced", Font.BOLD, 24));
         outputArea.setBackground(Color.BLACK);
         outputArea.setForeground(Colors.getForegroundColor());
         outputArea.setCaretColor(Colors.getForegroundColor());
@@ -67,7 +47,7 @@ public class Builder {
         JScrollPane scrollPane = new JScrollPane(outputArea);
 
         inputField = new JTextField();
-        inputField.setFont(new Font("Monospaced", Font.PLAIN, 24));
+        inputField.setFont(new Font("Monospaced", Font.BOLD, 24));
         inputField.setBackground(Color.BLACK);
         inputField.setForeground(Colors.getForegroundColor());
         inputField.setCaretColor(Colors.getForegroundColor());
