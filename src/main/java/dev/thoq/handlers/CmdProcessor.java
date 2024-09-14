@@ -1,18 +1,36 @@
 package dev.thoq.handlers;
 
-import static java.lang.System.out;
+import dev.thoq.lib.Screen;
 
 public class CmdProcessor {
-  static void evl(String command, String inputEx) {
+  public static void evl(String command, String inputEx) {
+    Screen.println(" " + command + " " + inputEx);
     switch (command) {
-      case "eval": Handlers.evalExHandler(inputEx);
-      case "classify": Handlers.classifyHandler(inputEx);
-      case "alg->ex": Handlers.algExHandler(inputEx);
-      case "sqrt": Handlers.sqrtHandler(inputEx);
-      case "help": Handlers.helpHandler(inputEx);
-      case "exit": Handlers.exitHandler();
-      case "quit": Handlers.exitHandler();
-      default: out.println(" Command not supported!"); InputHandler.getEx();
+      case "eval":
+        Handlers.evalExHandler(inputEx);
+        break;
+      case "classify":
+        Handlers.classifyHandler(inputEx);
+        break;
+      case "alg->ex":
+        Handlers.algExHandler(inputEx);
+        break;
+      case "sqrt":
+        Handlers.sqrtHandler(inputEx);
+        break;
+      case "help":
+        Handlers.helpHandler(inputEx);
+        break;
+      case "sci->not":
+        Handlers.sciNotHandler(inputEx);
+        break;
+      case "exit":
+      case "quit":
+        Handlers.exitHandler();
+        break;
+      default:
+        Screen.println(" Command not supported!");
+        break;
     }
   }
 }

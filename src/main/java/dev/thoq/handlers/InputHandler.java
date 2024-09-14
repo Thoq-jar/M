@@ -1,12 +1,15 @@
 package dev.thoq.handlers;
 
-import static java.lang.System.out;
+import dev.thoq.lib.Screen;
+
 import java.util.Scanner;
 
+import static java.lang.System.in;
+
 public class InputHandler {
-  private static final Scanner scanner = new Scanner(System.in);
+  private static final Scanner scanner = new Scanner(in);
   public static void getEx() {
-    out.print(" M Repl > ");
+    Screen.println(" M Repl > ");
     String inputEx = scanner.nextLine().trim();
     String[] parts = inputEx.split(" ", 2);
 
@@ -18,7 +21,7 @@ public class InputHandler {
     String command = parts[0];
 
     if (command.isEmpty()) {
-      out.println(" Command cannot be empty. Please enter a valid command.");
+      Screen.println(" Command cannot be empty. Please enter a valid command.");
       getEx();
       return;
     }
@@ -27,7 +30,7 @@ public class InputHandler {
       String expression = parts[1].substring(1, parts[1].length() - 1).trim();
       CmdProcessor.evl(command, expression);
     } else {
-      out.println(" Invalid input format. Please use: command [args]");
+      Screen.println(" Invalid input format. Please use: command [args]");
       getEx();
     }
   }

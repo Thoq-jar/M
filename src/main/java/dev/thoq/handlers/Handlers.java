@@ -5,25 +5,23 @@ import dev.thoq.functions.Classify;
 import dev.thoq.functions.EvalEx;
 import dev.thoq.functions.Help;
 import dev.thoq.lib.Lib;
+import dev.thoq.lib.Screen;
 
-import static java.lang.System.out;
+import java.text.DecimalFormat;
 
 public class Handlers {
   public static void classifyHandler(String inputNum) {
     try {
       double number = Double.parseDouble(inputNum);
       String result = Classify.classify(number);
-      out.println(result);
-      InputHandler.getEx();
+      Screen.println(result);
     } catch (NumberFormatException e) {
-      out.println(" Invalid number format.");
-      InputHandler.getEx();
+      Screen.println(" Invalid number format.");
     }
   }
 
   public static void evalExHandler(String expression) {
     EvalEx.evalEx(expression);
-    InputHandler.getEx();
   }
 
   public static void algExHandler(String inputEx) {
@@ -43,34 +41,42 @@ public class Handlers {
 
       String expr = expression.toString().trim();
       double result = Lib.eval(expr);
-      out.println(" " + result);
+      Screen.println(" " + result);
     } catch (Exception e) {
-      out.println(" Error evaluating algebraic expression: " + e.getMessage());
+      Screen.println(" Error evaluating algebraic expression: " + e.getMessage());
     }
-    InputHandler.getEx();
   }
 
   public static void sqrtHandler(String inputEx) {
     try {
       double number = Double.parseDouble(inputEx);
       double result = Math.sqrt(number);
-      out.println(" " + result);
+      Screen.println(" " + result);
     } catch (Exception e) {
-      out.println(" Error calculating square root: " + e.getMessage());
+      Screen.println(" Error calculating square root: " + e.getMessage());
     }
-    InputHandler.getEx();
+  }
+
+  public static void sciNotHandler(String inputEx) {
+    try {
+      double number = Double.parseDouble(inputEx);
+
+      DecimalFormat df = new DecimalFormat("#.##");
+      String formattedResult = df.format(number);
+
+      Screen.println(" " + formattedResult);
+    } catch (NumberFormatException e) {
+      Screen.println(" Error parsing number: " + e.getMessage());
+    } catch (Exception e) {
+      Screen.println(" Error calculating: " + e.getMessage());
+    }
   }
 
   public static void helpHandler(String input) {
-    if (!input.isEmpty()) {
-      out.println(" The 'help' command doesn't take arguments!");
-    }
-    Help.helpMenu();
-    InputHandler.getEx();
+    Help.helpMenu(input);
   }
 
   public static void exitHandler() {
-    System.exit(0);
+    Screen.println(" Exiting is not allowed in this mode. You can continue using the calculator.");
   }
-
 }
