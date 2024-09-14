@@ -34,7 +34,7 @@ public class Builder {
             if (relativeResource == null) {
                 err.println("Relative resource not found: " + relativePath);
 
-                String absolutePath = "resources\\icon.png";
+                String absolutePath = "icon.png";
                 File file = new File(absolutePath);
                 out.println("Falling back to local icon...");
                 if (!file.exists()) {

@@ -9,6 +9,8 @@ import dev.thoq.lib.Screen;
 
 import java.text.DecimalFormat;
 
+import static java.lang.System.exit;
+
 public class Handlers {
   public static void classifyHandler(String inputNum) {
     try {
@@ -76,7 +78,5 @@ public class Handlers {
     Help.helpMenu(input);
   }
 
-  public static void exitHandler() {
-    Screen.println(" Exiting is not allowed in this mode. You can continue using the calculator.");
-  }
+  public static void exitHandler() { exit(0); }
 }
