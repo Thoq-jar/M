@@ -15,7 +15,7 @@ public class InputProcessor {
       return;
     }
 
-    if (parts.length > 1 && parts[1].startsWith("[") && parts[1].endsWith("]")) {
+    if (parts.length > 1 && parts[1].startsWith("|") && parts[1].endsWith("|")) {
       String expression = parts[1].substring(1, parts[1].length() - 1).trim();
       CmdProcessor.evl(command, expression);
     } else if (command.equals("exit") || command.equals("quit") || command.equals("clear") || command.equals("help") || command.equals("pi->gen")) {
