@@ -23,7 +23,7 @@ public class Screen {
   }
 
   public static void printWelcome() {
-    for (String s : Arrays.asList(banner, " M: Calculator", " Dev Build (91024)", " ", " Welcome to M!", " For help, enter 'help []'", ""))
+    for (String s : Arrays.asList(banner, " M: Calculator", " Dev Build (81024)", " ", " Welcome to M!", " For help, enter 'help []'", ""))
       Screen.println(s);
   }
 
