@@ -21,7 +21,7 @@ public class InputProcessor {
     } else if (command.equals("exit") || command.equals("quit") || command.equals("clear") || command.equals("help") || command.equals("pi->gen")) {
       CmdProcessor.evl(command, "");
     } else {
-      Screen.println(" Invalid input format. Please use: command [args]");
+      Screen.println(" Invalid input format. Please use: command |args|");
     }
   }
 }
