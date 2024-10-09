@@ -33,7 +33,7 @@ public class Handlers {
 
   public static void clearHandler(String input) {
     Screen.clear();
-    if (!input.isEmpty()) Screen.println("Command 'clear' doesn't take any arguments.");
+    if (!input.isEmpty()) Screen.println(" Command 'clear' doesn't take any arguments.");
   }
 
   public static void algExHandler(String inputEx) {
