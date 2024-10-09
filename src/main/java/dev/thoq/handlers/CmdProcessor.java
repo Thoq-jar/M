@@ -4,7 +4,7 @@ import dev.thoq.lib.Screen;
 
 public class CmdProcessor {
   public static void evl(String command, String inputEx) {
-    Screen.println(" " + command + " [" + inputEx + "]");
+    Screen.println(" " + command + " |" + inputEx + "|");
     switch (command) {
       case "eval":
         Handlers.evalExHandler(inputEx);
@@ -12,7 +12,7 @@ public class CmdProcessor {
       case "classify":
         Handlers.classifyHandler(inputEx);
         break;
-      case "alg->ex":
+      case "poly":
         Handlers.algExHandler(inputEx);
         break;
       case "sqrt":
